@@ -1,0 +1,19 @@
+[package]
+name = "routrs_rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "routrs"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.21.1"
+features = ["extension-module"]
+
+[dependencies.maturin]
+version = "1.5.1"
+optional = true
+
+[features]
+default = ["maturin"]
