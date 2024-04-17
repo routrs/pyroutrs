@@ -1,5 +1,5 @@
 [package]
-name = "routrs_rs"
+name = "routrs"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,8 +7,10 @@ edition = "2021"
 name = "routrs"
 crate-type = ["cdylib"]
 
-[dependencies]
-routrs = "0.1.0"
+
+[dependencies.routrs]
+version = "1.0.0"
+features = ["highways", "railways", "maritime", "concurrency"]
 
 [dependencies.pyo3]
 version = "0.21.1"

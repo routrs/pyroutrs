@@ -1,13 +1,24 @@
 [tool.poetry]
-name = "routrs-py"
+name = "routrs"
+packages = [{ include = "routrs" }]
 version = "0.1.0"
-description = "Geograph-based shortest distance calculation"
+description = "Geograph-based shortest distance calculation for Python. 100% in Rust."
 authors = ["Carlo Casorzo <carlo@deepblu.dev>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.poe.tasks]
+test = "pytest"
+"build:dev" = "maturin develop --manifest-path bindings/Cargo.toml"
+"build" = "maturin build --release --out dist --manifest-path bindings/Cargo.toml"
+"pypi:token" = "echo $MATURIN_PYPI_TOKEN"
+"pypi:login" = "poetry config pypi-token.pypi $MATURIN_PYPI_TOKEN"
+"publish" = "poetry publish"
+
+
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
+poethepoet = "^0.25.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -17,5 +28,5 @@ pytest = "^8.1.1"
 mypy = "^1.9.0"
 
 [build-system]
-requires = ["maturin>=0.12,<0.13"]
+requires = ["maturin>=0.12"]
 build-backend = "maturin"

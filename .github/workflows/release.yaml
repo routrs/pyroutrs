@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build-and-publish:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: "3.12"
+            target: "x86_64-unknown-linux-gnu"
+          - os: windows-latest
+            python-version: "3.12"
+            target: "x86_64-pc-windows-msvc"
+          - os: macos-latest
+            python-version: "3.12"
+            target: "x86_64-apple-darwin"
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.1.4
+        with:
+          poetry-version: "1.6.1"
+
+      - name: Set up Cargo and Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+          profile: minimal
+
+      - name: Build Wheels with Maturin
+        run: |
+          poetry run maturin build --release --manifest-path bindings/Cargo.toml --out dist --no-sdist --target ${{ matrix.target }}
+
+      - name: Publish to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry publish --format wheel --file dist/*.whl

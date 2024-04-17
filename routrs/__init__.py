@@ -1,2 +1,3 @@
-from .add import add_numbers
-from .maritime import maritime_distance
+from .maritime import distance as maritime_distance
+
+__all__ = ["maritime_distance"]

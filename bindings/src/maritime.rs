@@ -1,9 +1,8 @@
+use routrs::maritime;
 use routrs::prelude::*;
-use routrs::MARITIME;
 
-pub fn distance(origin: &Geoloc, destination: &Geoloc) -> Result<(f64, Vec<Geoloc>), String> {
-    let (distance, path, _) = MARITIME.distance(origin, destination)?;
-    Ok((distance, path))
+pub fn distance(origin: &Geoloc, destination: &Geoloc) -> DistanceResult {
+    maritime::distance(origin, destination)
 }
 
 #[cfg(test)]
@@ -14,9 +13,10 @@ mod tests {
     fn it_calculates_maritime_distance() {
         let from: Geoloc = (40.6759, -74.0504); // USNYC
         let to: Geoloc = (41.0067858, 28.9732219); // TRIST
-        let (distance, path) = distance(&from, &to).unwrap();
+        let (distance, path, path_type) = distance(&from, &to).unwrap();
 
         assert_eq!(distance, 9224.95741604269);
-        assert_eq!(path.len(), 117);
+        assert_eq!(path.len(), 118);
+        assert_eq!(path_type, PathType::ViaWaypoints);
     }
 }
