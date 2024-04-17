@@ -7,6 +7,9 @@ edition = "2021"
 name = "routrs"
 crate-type = ["cdylib"]
 
+[dependencies]
+routrs = "0.1.0"
+
 [dependencies.pyo3]
 version = "0.21.1"
 features = ["extension-module"]
