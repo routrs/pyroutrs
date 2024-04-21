@@ -33,7 +33,8 @@ jobs:
 
       - name: Build Wheels with Maturin
         run: |
-          poetry run maturin develop --manifest-path bindings/Cargo.toml
+          poetry run poe build 
+          poetry add dist/*.whl
 
       - name: Run tests
         run: poetry run pytest .
