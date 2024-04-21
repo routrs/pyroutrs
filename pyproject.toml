@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pyroutrs"
+version = "0.1.0-alpha1"
 packages = [{ include = "routrs" }]
-version = "0.1.0-alpha"
 description = "Geograph-based shortest distance calculation for Python. 100% in Rust."
 authors = ["Carlo Casorzo <carlo@deepblu.dev>"]
 license = "MIT"
