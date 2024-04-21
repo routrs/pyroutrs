@@ -11,27 +11,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Linux for Servers (manylinux)
+          # manylinux
           - os: ubuntu-latest
-            python-version: ["3.9", "3.10", "3.11", "3.12"]
-            target: "x86_64-unknown-linux-gnu" # For manylinux, keep this
-            arch: x86_64 # May be needed for Maturin
-
-          # Windows
-          - os: windows-latest
-            python-version: ["3.9", "3.10", "3.11", "3.12"]
-            target: "x86_64-pc-windows-msvc"
-            arch: x86_64 # Potentially needed
-
-          # macOS x86_64 (for Rosetta 2 compatibility on M2)
-          - os: macos-latest
-            python-version: ["3.9", "3.10", "3.11", "3.12"]
-            target: "x86_64-apple-darwin"
+            python-version: "3.12"
+            target: "x86_64-unknown-linux-gnu"
             arch: x86_64
+            manylinux: auto
 
           # macOS ARM64 (for native M2 performance)
           - os: macos-latest
-            python-version: ["3.9", "3.10", "3.11", "3.12"]
+            python-version: "3.12"
             target: "aarch64-apple-darwin"
             arch: aarch64
     runs-on: ${{ matrix.os }}
