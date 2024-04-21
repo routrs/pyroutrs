@@ -21,6 +21,7 @@ jobs:
             python-version: "3.12"
             target: "x86_64-apple-darwin"
     runs-on: ${{ matrix.os }}
+    environment: pypi
 
     steps:
       - uses: actions/checkout@v3
@@ -48,5 +49,9 @@ jobs:
           poetry run poe build
 
       - name: Publish to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          poetry publish --username __token__ --password ${{ secrets.PYPI_TOKEN }} --format wheel --file dist/*.whl
+          echo $PYPI_TOKEN
+          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry publish --format wheel --file dist/*.whl
