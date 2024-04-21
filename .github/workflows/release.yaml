@@ -48,8 +48,6 @@ jobs:
           poetry run poe build
 
       - name: Publish to PyPI
-        env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
           poetry publish --format wheel --file dist/*.whl
