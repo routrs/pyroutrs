@@ -61,9 +61,8 @@ jobs:
         run: |
           echo "Running in test mode - no publish"
           echo "Python Version:"
-          poetry run python --version
-          echo "List installed packages"
-          poetry run pip list
+          python --version
+
       - name: Publish to PyPI
         # if: github.event_name == 'release'
         env:
