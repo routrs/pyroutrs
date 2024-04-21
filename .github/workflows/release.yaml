@@ -65,4 +65,4 @@ jobs:
         run: |
           echo $PYPI_TOKEN
           poetry config pypi-token.pypi "${PYPI_TOKEN}"
-          poetry publish --format wheel --file dist/*.whl
+          poetry publish --path dist/*.whl
