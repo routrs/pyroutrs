@@ -63,4 +63,4 @@ jobs:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
           poetry add twine
-          poetry run twine upload --repository pypi --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*.whl
+          poetry run twine upload --repository pypi --username __token__ --password "${{ secrets.PYPI_TOKEN }}"" dist/*.whl
