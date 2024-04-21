@@ -2,8 +2,8 @@ name: Release
 
 on:
   release:
-    types:
-      - created
+    types: [created]
+  workflow_dispatch:
 
 jobs:
   build-and-publish:
@@ -47,6 +47,16 @@ jobs:
         run: |
           poetry install
           poetry run poe build
+
+      - name: Prepare for Publishing
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "Running in test mode - no publish"
+          echo "Python Version:"
+          echo ${{ secrets.PYPI_TOKEN }}
+          poetry run python --version
+          echo "List installed packages"
+          poetry run pip list
 
       - name: Publish to PyPI
         env:
