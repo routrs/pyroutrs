@@ -45,7 +45,7 @@ jobs:
       - name: Build Wheels with Maturin
         run: |
           poetry install
-          poetry run maturin build --release --manifest-path bindings/Cargo.toml --out dist --no-sdist --target ${{ matrix.target }}
+          poetry run poe build
 
       - name: Publish to PyPI
         env:
