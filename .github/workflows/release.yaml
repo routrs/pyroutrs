@@ -59,9 +59,10 @@ jobs:
           poetry run pip list
 
       - name: Publish to PyPI
+        # if: github.event_name == 'release'
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
           echo $PYPI_TOKEN
-          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry config pypi-token.pypi "${PYPI_TOKEN}"
           poetry publish --format wheel --file dist/*.whl
