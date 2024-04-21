@@ -62,7 +62,5 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          echo $PYPI_TOKEN
-          poetry config pypi-token.pypi "${PYPI_TOKEN}"
-          mv dist/*.whl dist/routrs.whl 
-          poetry publish -r pypi --build=false dist/routrs.whl
+          poetry add twine
+          poetry run twine upload --repository pypi --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*.whl
