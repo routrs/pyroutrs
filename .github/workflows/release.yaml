@@ -62,5 +62,5 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          poetry add twine
-          poetry run twine upload --repository pypi --username __token__ --password "${{ secrets.PYPI_TOKEN }}"" dist/*.whl
+          python -m pip install twine 
+          twine upload --repository pypi --username __token__ --password "${PYPI_TOKEN}" dist/*.whl
