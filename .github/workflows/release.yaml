@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  build-wheels: # Updated job name
     strategy:
       fail-fast: false
       matrix:
@@ -21,33 +21,41 @@ jobs:
             python-version: "3.12"
             target: "x86_64-apple-darwin"
     runs-on: ${{ matrix.os }}
-    environment: pypi
 
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-
       - name: Install Poetry
         uses: abatilo/actions-poetry@v2.1.4
         with:
           poetry-version: "1.6.1"
-
       - name: Set up Cargo and Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           default: true
           profile: minimal
-
       - name: Build Wheels with Maturin
         run: |
           poetry install
           poetry run poe build
+      - name: Upload wheels as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: wheels
+          path: dist/
 
+  publish:
+    runs-on: ubuntu-latest
+    needs: build-wheels
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: wheels
+          path: dist/
       - name: Prepare for Publishing
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -56,7 +64,6 @@ jobs:
           poetry run python --version
           echo "List installed packages"
           poetry run pip list
-
       - name: Publish to PyPI
         # if: github.event_name == 'release'
         env:
