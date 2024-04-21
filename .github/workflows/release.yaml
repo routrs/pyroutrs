@@ -11,15 +11,20 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Linux for Servers
           - os: ubuntu-latest
             python-version: "3.12"
             target: "x86_64-unknown-linux-gnu"
-          - os: windows-latest
-            python-version: "3.12"
-            target: "x86_64-pc-windows-msvc"
+
+          # macOS x86_64 (for Rosetta 2 compatibility on M2)
           - os: macos-latest
             python-version: "3.12"
             target: "x86_64-apple-darwin"
+
+          # macOS ARM64 (for native M2 performance)
+          - os: macos-latest
+            python-version: "3.12"
+            target: "aarch64-apple-darwin"
     runs-on: ${{ matrix.os }}
 
     steps:

@@ -11,9 +11,6 @@ readme = "README.md"
 test = "pytest"
 "build:dev" = "maturin develop --manifest-path bindings/Cargo.toml"
 "build" = "maturin build --release --out dist --manifest-path bindings/Cargo.toml"
-"pypi:token" = "echo $MATURIN_PYPI_TOKEN"
-"pypi:login" = "poetry config pypi-token.pypi $MATURIN_PYPI_TOKEN"
-"publish" = "poetry publish"
 
 
 [tool.poetry.dependencies]
