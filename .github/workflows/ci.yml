@@ -1,10 +1,8 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  release:
+    types: [created]
   workflow_dispatch:
 
 jobs:
@@ -136,7 +134,6 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     environment: pypi
-    if: "startsWith(github.ref, 'refs/tags/')"
     needs: [check, test, fmt, macos, windows, linux]
     steps:
       - uses: actions/download-artifact@v3
