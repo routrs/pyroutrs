@@ -6,6 +6,7 @@ authors = ["Carlo Casorzo <carlo@deepblu.dev>"]
 license = "MIT"
 readme = "README.md"
 
+
 [tool.poe.tasks]
 test = "pytest"
 "build:dev" = "maturin develop --manifest-path bindings/Cargo.toml"

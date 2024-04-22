@@ -2,6 +2,11 @@
 name = "routrs"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+repository = "https://github.com/routrs/pyroutrs"
+documentation = "https://github.com/routrs/pyroutrs"
+readme = "README.md"
+keywords = ["geography", "routing", "supply-chain", "shortest-path"]
 
 [lib]
 name = "routrs"
