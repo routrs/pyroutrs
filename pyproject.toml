@@ -1,7 +1,6 @@
 [tool.poetry]
 name = "pyroutrs"
 version = "0.1.0"
-packages = [{ include = "routrs" }]
 description = "Geograph-based shortest distance calculation for Python. 100% in Rust."
 authors = ["Carlo Casorzo <carlo@deepblu.dev>"]
 license = "MIT"
@@ -15,7 +14,6 @@ test = "pytest"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-poethepoet = "^0.25.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,11 +21,8 @@ ruff = "^0.3.7"
 maturin = "^1.5.1"
 pytest = "^8.1.1"
 mypy = "^1.9.0"
+poethepoet = "^0.25.1"
 
 [build-system]
 requires = ["maturin>=0.12"]
 build-backend = "maturin"
-
-# [tool.maturin]
-# bindings = "cffi"
-# compatibility = "linux"

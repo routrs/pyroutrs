@@ -1,5 +1,4 @@
 import pytest  # noqa
-
 from routrs import maritime_distance
 
 
