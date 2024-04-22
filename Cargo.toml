@@ -14,7 +14,7 @@ features = ["highways", "railways", "maritime", "concurrency"]
 
 [dependencies.pyo3]
 version = "0.21.1"
-features = ["abi3-py37", "extension-module"]
+features = ["abi3-py39", "extension-module"]
 
 [dependencies.maturin]
 version = "1.5.1"
