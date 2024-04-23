@@ -1,13 +1,13 @@
 use routrs::concurrency::*;
-use routrs::maritime;
+use routrs::highways;
 use routrs::prelude::*;
 
 pub fn distance(origin: &Geoloc, destination: &Geoloc) -> DistanceResult {
-    maritime::distance(origin, destination)
+    highways::distance(origin, destination)
 }
 
 pub fn par_distance(legs: &[Leg<Geoloc>]) -> Result<Vec<(f64, Path<Geoloc>)>, String> {
-    maritime::geograph()
+    highways::geograph()
         .par_distance(legs)
         .into_iter()
         .map(|result| result.map(|(distance, path, _)| (distance, path)))
@@ -19,23 +19,23 @@ mod tests {
     use super::*;
 
     fn geoloc_fixtures() -> (Geoloc, Geoloc) {
-        let from: Geoloc = (40.6759, -74.0504); // USNYC
-        let to: Geoloc = (41.0067858, 28.9732219); // TRIST
+        let from: Geoloc = (31.33068357, 120.902694); // Kunshan, Suzhou, Jiangsu, China
+        let to: Geoloc = (31.05287995, 121.2232226); // Songjiang District, Shanghai, China
         (from, to)
     }
 
     #[test]
-    fn it_calculates_maritime_distance() {
+    fn it_calculates_highway_distance() {
         let (from, to) = geoloc_fixtures();
         let (distance, path, path_type) = distance(&from, &to).unwrap();
 
-        assert_eq!(distance, 9224.95741604269);
-        assert_eq!(path.len(), 118);
+        assert_eq!(distance, 57.237115955889074);
+        assert_eq!(path.len(), 39);
         assert_eq!(path_type, PathType::ViaWaypoints);
     }
 
     #[test]
-    fn it_parallel_calculates_maritime_distance() {
+    fn it_parallel_calculates_highway_distance() {
         let (from, to) = geoloc_fixtures();
         let (expected_distance, expected_path, _) = distance(&from, &to).unwrap();
 
