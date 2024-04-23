@@ -1,7 +1,10 @@
+Geoloc = tuple[float, float]
+GeoPath = list[Geoloc]
+
 def maritime_distance(
-    origin: tuple[float, float],
-    destination: tuple[float, float],
-) -> tuple[float, list[float]]:
+    origin: Geoloc,
+    destination: Geoloc,
+) -> tuple[float, GeoPath]:
     """
     Calculate the maritime distance in km between two (lat, lng) coordinates
     it uses the haversine formula and the MARNET geograph for determining
@@ -13,20 +16,20 @@ def maritime_distance(
 
 
     Args:
-        origin (tuple[float, float]): The coordinates of the origin point.
-        destination (tuple[float, float]): The coordinates of the destination
+        origin (Geoloc): The coordinates of the origin point.
+        destination (Geoloc): The coordinates of the destination
         point.
 
     Returns:
-        tuple[float, list[float]]: A tuple containing the maritime distance
-        and a list of intermediate distances, including origin and destination.
+        tuple[float, GeoPath]: A tuple containing the maritime distance
+        and the path as a Geoloc list, including origin and destination.
     """
     ...
 
 def highway_distance(
-    origin: tuple[float, float],
-    destination: tuple[float, float],
-) -> tuple[float, list[float]]:
+    origin: Geoloc,
+    destination: Geoloc,
+) -> tuple[float, GeoPath]:
     """
     Calculate the highway distance in km between two (lat, lng) coordinates
     it uses the haversine formula and the MARNET geograph for determining
@@ -38,20 +41,20 @@ def highway_distance(
 
 
     Args:
-        origin (tuple[float, float]): The coordinates of the origin point.
-        destination (tuple[float, float]): The coordinates of the destination
+        origin (Geoloc): The coordinates of the origin point.
+        destination (Geoloc): The coordinates of the destination
         point.
 
     Returns:
-        tuple[float, list[float]]: A tuple containing the highway distance
-        and a list of intermediate distances, including origin and destination.
+        tuple[float, GeoPath]: A tuple containing the highway distance
+        and the path as a Geoloc list, including origin and destination.
     """
     ...
 
 def railway_distance(
-    origin: tuple[float, float],
-    destination: tuple[float, float],
-) -> tuple[float, list[float]]:
+    origin: Geoloc,
+    destination: Geoloc,
+) -> tuple[float, GeoPath]:
     """
     Calculate the railway distance in km between two (lat, lng) coordinates
     it uses the haversine formula and the MARNET geograph for determining
@@ -63,12 +66,12 @@ def railway_distance(
 
 
     Args:
-        origin (tuple[float, float]): The coordinates of the origin point.
-        destination (tuple[float, float]): The coordinates of the destination
+        origin (Geoloc): The coordinates of the origin point.
+        destination (Geoloc): The coordinates of the destination
         point.
 
     Returns:
-        tuple[float, list[float]]: A tuple containing the railway distance
+        tuple[float, GeoPath]: A tuple containing the railway distance
         and a list of intermediate distances, including origin and destination.
     """
     ...
