@@ -3,15 +3,15 @@ use routrs::concurrency::*;
 use routrs::prelude::*;
 use routrs::railways;
 
-pub fn distance(origin: &Geoloc, destination: &Geoloc) -> DistanceResult {
-    railways::distance(origin, destination)
+pub fn distance(origin: &Geoloc, destination: &Geoloc) -> ShortestPath {
+    railways::shortest_path(origin, destination)
 }
 
-pub fn par_distance(legs: &[Leg<Geoloc>]) -> Result<Vec<(f64, Path<Geoloc>)>, String> {
+pub fn par_distance(legs: &[Leg<Geoloc>]) -> Vec<(f64, Path<Geoloc>)> {
     railways::geograph()
         .par_distance(legs)
         .into_iter()
-        .map(|result| result.map(|(distance, path, _)| (distance, path)))
+        .map(|(distance, path, _)| (distance, path))
         .collect()
 }
 
@@ -28,7 +28,7 @@ mod tests {
     #[test]
     fn it_calculates_railway_distance() {
         let (from, to) = geoloc_fixtures();
-        let (distance, path, path_type) = railways::distance(&from, &to).unwrap();
+        let (distance, path, path_type) = distance(&from, &to);
 
         assert_eq!(distance, 749.4744344461568);
         assert_eq!(path.len(), 603);
@@ -38,10 +38,10 @@ mod tests {
     #[test]
     fn it_parallel_calculates_railway_distance() {
         let (from, to) = geoloc_fixtures();
-        let (expected_distance, expected_path, _) = distance(&from, &to).unwrap();
+        let (expected_distance, expected_path, _) = distance(&from, &to);
 
         let legs: Vec<_> = (0..100).map(|_| Leg((from, to))).collect();
-        let distances = par_distance(&legs).unwrap();
+        let distances = par_distance(&legs);
 
         assert_eq!(distances.len(), legs.len());
         for (distance, path) in distances {
