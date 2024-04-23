@@ -1,4 +1,3 @@
 # routrs
 Geograph-based shortest distance calculation for Python. 100% in Rust.
-
-**WORK IN PROGRESS**
+Based on the [routrs](https://github.com/routrs/routrs) rust crate.
