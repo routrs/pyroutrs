@@ -1,6 +1,6 @@
 [package]
 name = "routrs"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/routrs/pyroutrs"
@@ -14,7 +14,7 @@ crate-type = ["cdylib"]
 
 
 [dependencies.routrs]
-version = "1.0.0"
+version = "2.0.0"
 features = ["highways", "railways", "maritime", "concurrency"]
 
 [dependencies.pyo3]
