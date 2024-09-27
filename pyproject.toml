@@ -9,8 +9,8 @@ readme = "README.md"
 
 [tool.poe.tasks]
 test = "pytest"
-"build:dev" = "maturin develop --manifest-path bindings/Cargo.toml"
-"build" = "maturin build --release --out dist --manifest-path bindings/Cargo.toml"
+"build:dev" = "maturin develop --manifest-path Cargo.toml"
+"build" = "maturin build --release --out dist --manifest-path Cargo.toml"
 
 
 [tool.poetry.dependencies]
