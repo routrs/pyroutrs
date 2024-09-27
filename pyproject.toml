@@ -9,8 +9,8 @@ readme = "README.md"
 
 [tool.poe.tasks]
 test = "pytest"
-"build:dev" = "maturin develop --manifest-path bindings/Cargo.toml"
-"build" = "maturin build --release --out dist --manifest-path bindings/Cargo.toml"
+"build:dev" = "maturin develop --manifest-path Cargo.toml"
+"build" = "maturin build --release --out dist --manifest-path Cargo.toml"
 
 
 [tool.poetry.dependencies]
@@ -21,7 +21,6 @@ python = "^3.12"
 ruff = "^0.3.7"
 maturin = "^1.5.1"
 pytest = "^8.1.1"
-mypy = "^1.9.0"
 poethepoet = "^0.25.1"
 
 [build-system]
