@@ -105,5 +105,8 @@ poe build:dev
 poe test
 ```
 
+## Attributions
+Inspired by [scgraph](https://github.com/connor-makowski/scgraph) and [searoute](https://github.com/genthalili/searoute-py), including the use their datasets, whicha have been modified to work with this package.
+
 
 
