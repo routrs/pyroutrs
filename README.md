@@ -90,6 +90,7 @@ MIT
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a PR.
+Contact Carlo Casorzo at carlo[a]deepblu.dev or in X [@deepbludev](https://x.com/deepbludev)
 
 ## Development
 
@@ -106,7 +107,7 @@ poe test
 ```
 
 ## Attributions
-Inspired by [scgraph](https://github.com/connor-makowski/scgraph) and [searoute](https://github.com/genthalili/searoute-py), including the use their datasets, whicha have been modified to work with this package.
+Inspired by [scgraph](https://github.com/connor-makowski/scgraph) and [searoute](https://github.com/genthalili/searoute-py), including the use their datasets, which have been modified to work with this package.
 
 
 
